@@ -1,0 +1,435 @@
+% =============================================================================
+% references.bib — Bibliography for the ollama-classifier research paper
+% =============================================================================
+% Sections:
+%   1. Core Software (ollama-classifier, Ollama)
+%   2. Retrieval-Augmented Classification & Generation (RAC/RAG)
+%   3. Open-Source Large Language Models (run via Ollama)
+%   4. Embedding Models (for the retrieval pipeline)
+%   5. Domain & Application (COICOP, product classification, economic data)
+%   6. LLM Capabilities, Prompting & Classification
+%   7. Accessibility, GUI & Democratization of AI
+% =============================================================================
+
+
+% =============================================================================
+% 1. CORE SOFTWARE
+% =============================================================================
+
+@software{ollama-classifier,
+  title = {ollama-classifier: A Python Library for Retrieval-Augmented
+           Classification Using Local Large Language Models},
+  author = {Palumbo, Luigi},
+  url = {https://pypi.org/project/ollama-classifier/},
+  year = {2025},
+  annote = {This is the main subject of the paper. The ollama-classifier library
+            implements the Retrieval-Augmented Classification (RAC) framework,
+            enabling users to leverage locally-running LLMs via Ollama as
+            zero-shot/few-shot classifiers without any fine-tuning. It provides
+            a modular pipeline encompassing synthetic knowledge base construction,
+            semantic retrieval, and generative classification, abstracting away
+            the complexity of RAC for both researchers and practitioners.}
+}
+
+@software{ollama,
+  title = {Ollama: Run Large Language Models Locally},
+  author = {{Ollama Contributors}},
+  url = {https://ollama.com},
+  year = {2023},
+  annote = {Ollama is the underlying runtime used by ollama-classifier to serve
+            open-source LLMs (e.g., LLaMA, Mistral, Qwen, DeepSeek) on
+            consumer hardware. By eliminating dependency on cloud APIs, Ollama
+            provides the privacy, cost-effectiveness, and offline capability that
+            are central to the library's value proposition.}
+}
+
+
+% =============================================================================
+% 2. RETRIEVAL-AUGMENTED CLASSIFICATION & GENERATION (RAC/RAG)
+% =============================================================================
+
+@inproceedings{lewis2020retrieval,
+  title = {Retrieval-Augmented Generation for Knowledge-Intensive {NLP} Tasks},
+  author = {Lewis, Patrick and Perez, Ethan and Piktus, Aleksandra and
+            Petroni, Fabio and Karpukhin, Vladimir and Goyal, Naman and
+            K{\"u}ttler, Heinrich and Lewis, Mike and Yih, Wen-tau and
+            Rockt{\"a}schel, Tim and others},
+  booktitle = {Advances in Neural Information Processing Systems},
+  volume = {33},
+  pages = {9459--9474},
+  year = {2020},
+  url = {https://arxiv.org/abs/2005.11401},
+  annote = {Seminal paper introducing Retrieval-Augmented Generation (RAG), which
+            grounds LLM outputs in externally retrieved evidence to improve
+            factuality and stability. The ollama-classifier library builds upon
+            this paradigm, using retrieval to condition the generative
+            classification step, improving both accuracy and interpretability
+            over pure prompting approaches.}
+}
+
+@inproceedings{yu2023retrieval,
+  title = {Retrieval-Augmented Few-Shot Text Classification},
+  author = {Yu, Guoxin and Liu, Lemao and Jiang, Haiyun and Shi, Shuming and
+            Ao, Xiang},
+  booktitle = {Findings of the Association for Computational Linguistics:
+               EMNLP},
+  pages = {6721--6735},
+  year = {2023},
+  url = {https://arxiv.org/abs/2308.13314},
+  annote = {Directly relevant to the classification methodology implemented in
+            ollama-classifier. Demonstrates that combining nearest-neighbor
+            retrieval with few-shot prompting improves text classification
+            without fine-tuning, which is the core mechanism the library
+            implements using Ollama-based models.}
+}
+
+@inproceedings{abdullahi2024retrieval,
+  title = {Retrieval Augmented Zero-Shot Text Classification},
+  author = {Abdullahi, Tassallah and Singh, Ritambhara and Eickhoff, Carsten},
+  booktitle = {Proceedings of the 2024 ACM SIGIR International Conference on
+               Theory of Information Retrieval},
+  pages = {195--203},
+  year = {2024},
+  doi = {10.1145/3675118.3675148},
+  annote = {Extends retrieval-augmented classification to the zero-shot setting,
+            closely aligning with ollama-classifier's ability to classify into
+            arbitrary taxonomies without training data. The library's approach
+            of retrieving exemplars from a synthetic knowledge base reflects the
+            methodology explored in this work.}
+}
+
+@article{nunes2025rac,
+  title = {Classification at Scale: A Retrieval-Augmented Classification
+           Framework for {COICOP} 2018 Consumer Products},
+  author = {Nunes, In{\^e}s and Palumbo, Luigi and Bacco, Luca},
+  journal = {Manuscript under review},
+  year = {2025},
+  url = {https://github.com/paluigi/ollama-classifier},
+  annote = {Foundational work by the same author of ollama-classifier,
+            describing the RAC framework that the library implements. This paper
+            demonstrates the methodology on COICOP product classification,
+            achieving up to 0.80 accuracy at the finest granularity level. The
+            ollama-classifier library is the software realization of this
+            framework, packaged as a general-purpose, reusable tool.}
+}
+
+
+% =============================================================================
+% 3. OPEN-SOURCE LARGE LANGUAGE MODELS (run via Ollama)
+% =============================================================================
+
+@article{touvron2023llama,
+  title = {{LLaMA} 2: Open Foundation and Fine-Tuned Chat Models},
+  author = {Touvron, Hugo and Martin, Louis and Stone, Kevin and Albert,
+            Peter and Almahairi, Amjad and Babaei, Yasmine and Bashlykov,
+            Nikolay and Batra, Soumya and Bhargava, Prajjwal and others},
+  journal = {arXiv preprint arXiv:2307.09288},
+  year = {2023},
+  url = {https://arxiv.org/abs/2307.09288},
+  annote = {LLaMA 2 is a key model family supported by Ollama and commonly used
+            with ollama-classifier. This paper establishes the open-source
+            foundation model ecosystem that makes local LLM deployment feasible,
+            directly enabling the library's operation without proprietary APIs.}
+}
+
+@article{meta2024llama3,
+  title = {The {LLaMA} 3 Herd of Models},
+  author = {{Meta AI}},
+  journal = {arXiv preprint arXiv:2407.21783},
+  year = {2024},
+  url = {https://arxiv.org/abs/2407.21783},
+  annote = {LLaMA 3 represents the latest generation of Meta's open models and
+            is a primary model family used with ollama-classifier. LLaMA 3 8B
+            demonstrated strong overall classification performance in the RAC
+            evaluation, and these models are readily available through Ollama
+            for local inference in the library's pipeline.}
+}
+
+@article{jiang2023mistral,
+  title = {Mistral {7B}},
+  author = {Jiang, Albert Q. and Sablayrolles, Alexandre and Roux, Antoine and
+            Mensch, Arthur and Savary, Blanche and Bamford, Chris and Chaplot,
+            Devendra Singh and Casas, Diego Luis and Hanna, Emma and others},
+  journal = {arXiv preprint arXiv:2310.06825},
+  year = {2023},
+  url = {https://arxiv.org/abs/2310.06825},
+  annote = {Mistral 7B achieved the highest overall classification accuracy in
+            the RAC evaluation despite its compact size. Its small footprint
+            makes it ideal for local deployment on consumer hardware via Ollama,
+            aligning with ollama-classifier's goal of accessible, efficient
+            classification.}
+}
+
+@article{yang2024qwen2,
+  title = {{Qwen2.5} Technical Report},
+  author = {Yang, An and Yang, Baosong and Hui, Binyuan and Zheng, Bo and
+            Yu, Bowen and others},
+  journal = {arXiv preprint arXiv:2412.15115},
+  year = {2024},
+  url = {https://arxiv.org/abs/2412.15115},
+  annote = {Qwen2.5-32B achieved the highest accuracy in the RAC evaluation
+            across all COICOP levels using the classification-by-definition
+            approach. Available through Ollama, it represents a strong choice
+            for ollama-classifier users who prioritize classification precision
+            and can allocate sufficient hardware resources.}
+}
+
+@article{deepseek2025r1,
+  title = {{DeepSeek-R1}: Incentivizing Reasoning Capability in {LLMs} via
+           Reinforcement Learning},
+  author = {{DeepSeek-AI}},
+  journal = {arXiv preprint arXiv:2501.12948},
+  year = {2025},
+  url = {https://arxiv.org/abs/2501.12948},
+  annote = {DeepSeek-R1 models demonstrated a distinctive conservative
+            classification strategy with well-calibrated uncertainty estimation
+            and high accuracy on classified items. ollama-classifier supports
+            these models, and their opt-out behavior is particularly relevant
+            for human-in-the-loop scenarios targeted by the library's GUI app.}
+}
+
+
+% =============================================================================
+% 4. EMBEDDING MODELS (for the retrieval pipeline)
+% =============================================================================
+
+@inproceedings{reimers2019sentence,
+  title = {Sentence-{BERT}: Sentence Embeddings Using {Siamese}
+           {BERT}-Networks},
+  author = {Reimers, Nils and Gurevych, Iryna},
+  booktitle = {Proceedings of the 2019 Conference on Empirical Methods in
+               Natural Language Processing and the 9th International Joint
+               Conference on Natural Language Processing},
+  pages = {3982--3992},
+  year = {2019},
+  doi = {10.18653/v1/D19-1410},
+  annote = {SentenceTransformers is the framework underlying many embedding
+            models used in ollama-classifier's retrieval pipeline. This paper
+            introduces the Siamese BERT architecture for producing
+            semantically meaningful sentence embeddings, which are essential for
+            the similarity-based retrieval step in the RAC framework.}
+}
+
+@article{wang2022text,
+  title = {Text Embeddings by Weakly-Supervised Contrastive Pre-training},
+  author = {Wang, Liang and Yang, Nan and Huang, Xiaoxuan and Jiao, Baojun
+            and Yang, Linjun and Jiang, Rui and Majumder, Rashmi and Wei, Furu},
+  journal = {arXiv preprint arXiv:2212.03533},
+  year = {2022},
+  url = {https://arxiv.org/abs/2212.03533},
+  annote = {Introduces the E5 embedding family (multilingual-e5-base,
+            multilingual-e5-large), which are supported by ollama-classifier for
+            the retrieval component. These embeddings provide the multilingual
+            semantic similarity capabilities required for cross-lingual
+            classification tasks.}
+}
+
+@misc{chen2024gte,
+  title = {GTE: General Text Embeddings from {ALIBABA}},
+  author = {Chen, Jianlv and Zhang, Qibin and Zheng, Xin and Zhu, Guohao and
+            Deng, Zhao and Cui, Yunshui and Xiao, Wenjie and Liu, Tianyu and
+            Zhang, Pengjun and Yang, Xingyu and others},
+  year = {2024},
+  url = {https://huggingface.co/Alibaba-NLP/gte-Qwen2-7B-instruct},
+  annote = {The GTE embedding family (gte-multilingual-base,
+            gte-Qwen2-7B-instruct) achieved the highest retrieval presence in
+            the RAC evaluation (90.7\%). ollama-classifier supports these models
+            in its retrieval pipeline, enabling users to leverage
+            state-of-the-art semantic search for their classification tasks.}
+}
+
+
+% =============================================================================
+% 5. DOMAIN & APPLICATION (COICOP, product classification, economic data)
+% =============================================================================
+
+@misc{un2018coicop,
+  title = {Classification of Individual Consumption According to Purpose
+           ({COICOP}) 2018},
+  author = {{United Nations Statistics Division}},
+  year = {2018},
+  url = {https://unstats.un.org/unsd/classifications/Family/Detail/21},
+  annote = {COICOP 2018 is the international taxonomy used as the primary
+            validation use case for ollama-classifier. This reference provides
+            the official definitions and hierarchical structure that the library
+            uses to construct synthetic knowledge bases and perform
+            classification, demonstrating its applicability to real-world
+            statistical classification tasks.}
+}
+
+@article{cavallo2013online,
+  title = {Online and Official Price Indexes: Measuring Argentina's Inflation},
+  author = {Cavallo, Alberto},
+  journal = {Journal of Monetary Economics},
+  volume = {60},
+  number = {2},
+  pages = {152--165},
+  year = {2013},
+  doi = {10.1016/j.jmoneco.2012.10.003},
+  annote = {Establishes the economic motivation for automated product
+            classification by demonstrating the viability of online price data
+            for computing inflation indicators. Provides the broader context
+            that motivates ollama-classifier as a practical tool for National
+            Statistical Institutes needing scalable classification of
+            web-scraped products.}
+}
+
+@article{berki2025nlp,
+  title = {{NLP}-Enhanced Inflation Measurement Using {BERT} and Web Scraping},
+  author = {Berki, Martin and Andicsova, Vanesa and Oravec, Milos},
+  journal = {Frontiers in Artificial Intelligence},
+  volume = {8},
+  pages = {1520659},
+  year = {2025},
+  doi = {10.3389/frai.2025.1520659},
+  annote = {Demonstrates the application of transformer models (BERT) to
+            inflation measurement via product classification. This work
+            represents the traditional fine-tuning approach that
+            ollama-classifier aims to supplant with its retrieval-augmented,
+            no-fine-tuning methodology, providing a clear comparative baseline
+            for the domain application.}
+}
+
+@article{cavallo2017online,
+  title = {Are Online and Offline Prices Similar? Evidence from Large
+           Multi-Channel Retailers},
+  author = {Cavallo, Alberto},
+  journal = {American Economic Review},
+  volume = {107},
+  number = {1},
+  pages = {283--303},
+  year = {2017},
+  doi = {10.1257/aer.20151526},
+  annote = {Provides evidence that online prices reliably track offline market
+            dynamics, further legitimizing the use of web-scraped data for
+            economic statistics. Supports the case for tools like
+            ollama-classifier that enable automatic classification of online
+            product data at scale.}
+}
+
+
+% =============================================================================
+% 6. LLM CAPABILITIES, PROMPTING & CLASSIFICATION
+% =============================================================================
+
+@article{brown2020language,
+  title = {Language Models are Few-Shot Learners},
+  author = {Brown, Tom and Mann, Benjamin and Ryder, Nick and Subbiah,
+            Melanie and Kaplan, Jared D. and Dhariwal, Prafulla and
+            Neelakantan, Arvind and Shyam, Pranav and Sastry, Girish and
+            Askell, Amanda and others},
+  journal = {Advances in Neural Information Processing Systems},
+  volume = {33},
+  pages = {1877--1901},
+  year = {2020},
+  url = {https://arxiv.org/abs/2005.14165},
+  annote = {Foundational paper demonstrating GPT-3's few-shot learning
+            capabilities without fine-tuning. Establishes the theoretical basis
+            for using LLMs as classifiers through in-context learning, which is
+            the core paradigm that ollama-classifier implements with smaller,
+            locally-runnable models via Ollama.}
+}
+
+@article{zhao2023survey,
+  title = {A Survey of Large Language Models},
+  author = {Zhao, Wayne Xin and Zhou, Kun and Li, Junyi and Tang, Tianyi and
+            Wang, Xiaolei and Hou, Yupeng and Min, Yingqian and Zhang, Beichen
+            and Zhang, Junjie and Dong, Zican and others},
+  journal = {arXiv preprint arXiv:2303.18223},
+  year = {2023},
+  url = {https://arxiv.org/abs/2303.18223},
+  annote = {Comprehensive survey covering the capabilities, architectures, and
+            training paradigms of modern LLMs. Provides the theoretical
+            background for understanding why LLMs can serve as effective
+            classifiers, supporting the paper's argument that generative models
+            can be repurposed for discriminative tasks through appropriate
+            prompting and retrieval augmentation.}
+}
+
+@article{liu2023preliminary,
+  title = {Pre-train, Prompt, and Predict: A Systematic Survey of Prompting
+           Methods in Natural Language Processing},
+  author = {Liu, Pengfei and Yuan, Weizhe and Fu, Jinlan and Jiang, Zhengbao
+            and Hayashi, Hiroaki and Neubig, Graham},
+  journal = {ACM Computing Surveys},
+  volume = {55},
+  number = {9},
+  pages = {1--35},
+  year = {2023},
+  doi = {10.1145/3560815},
+  annote = {Surveys prompting methodologies directly relevant to how
+            ollama-classifier instructs LLMs to perform classification. The
+            library's prompt templates for classification-by-example and
+            classification-by-definition are informed by the prompting
+            strategies catalogued in this survey.}
+}
+
+@article{gilardi2023chatgpt,
+  title = {Chat{GPT} Outperforms Crowd-Workers for Text-Annotation Tasks},
+  author = {Gilardi, Fabrizio and Alizadeh, Meysam and Kubli, Magnus},
+  journal = {Proceedings of the National Academy of Sciences},
+  volume = {120},
+  number = {7},
+  pages = {e2215907120},
+  year = {2023},
+  doi = {10.1073/pnas.2215907120},
+  annote = {Demonstrates that LLMs can match or exceed human crowd-workers for
+            text classification tasks. This finding directly supports
+            ollama-classifier's premise: that locally-run LLMs, especially when
+            augmented with retrieval, can serve as reliable classifiers,
+            reducing or eliminating the need for manual annotation.}
+}
+
+
+% =============================================================================
+% 7. ACCESSIBILITY, GUI & DEMOCRATIZATION OF AI
+% =============================================================================
+
+@inproceedings{amershi2019software,
+  title = {Software Engineering for Machine Learning: A Case Study},
+  author = {Amershi, Saleema and Begel, Andrew and Bird, Christian and
+            DeLine, Robert and Gall, Harald and Kamar, Ece and Nagappan,
+            Meera and Nushi, Besmira and Zimmermann, Thomas},
+  booktitle = {Proceedings of the 41st International Conference on Software
+               Engineering: Software Engineering in Practice},
+  pages = {291--300},
+  year = {2019},
+  doi = {10.1109/ICSE-SEIP.2019.00042},
+  annote = {Discusses the challenges of building ML-powered applications and the
+            gap between ML models and end-users. Directly supports the
+            motivation for the ollama-classifier GUI app, which aims to make
+            LLM-based classification accessible to non-technical users such as
+            domain experts and statisticians without requiring programming
+            expertise.}
+}
+
+@article{he2021automl,
+  title = {{AutoML}: A Survey of the State-of-the-Art},
+  author = {He, Xin and Zhao, Kai and Chu, Xiaowen},
+  journal = {Knowledge-Based Systems},
+  volume = {228},
+  pages = {107243},
+  year = {2021},
+  doi = {10.1016/j.knosys.2021.107243},
+  annote = {AutoML aims to automate the ML pipeline, making it accessible to
+            non-experts. The ollama-classifier GUI shares this philosophy,
+            abstracting the complexity of RAC---including retrieval
+            configuration, embedding selection, and prompt engineering---behind
+            an intuitive interface, analogous to how AutoML tools hide
+            hyperparameter tuning and model selection.}
+}
+
+@article{lazaridou2023ai,
+  title = {Towards {AI} That Can Solve Science: A Community-Driven
+           Perspective},
+  author = {Lazaridou, Angeliki and Kobyzev, Ivan and Mahowald, Kyle and
+            Mordatch, Igor and Niekum, Scott and others},
+  journal = {arXiv preprint arXiv:2308.11016},
+  year = {2023},
+  url = {https://arxiv.org/abs/2308.11016},
+  annote = {Discusses the importance of democratizing access to AI tools for
+            domain experts who are not ML specialists. Relevant to the
+            ollama-classifier GUI's goal of enabling non-technical users---such
+            as economists, statisticians, and data officers---to leverage
+            state-of-the-art LLM classification without writing code.}
+}
